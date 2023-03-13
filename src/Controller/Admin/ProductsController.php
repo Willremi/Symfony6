@@ -57,8 +57,8 @@ class ProductsController extends AbstractController
             $product->setSlug($slug);
             
             // Arrondi le prix
-            $prix = $product->getPrice()*100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice()*100;
+            // $product->setPrice($prix);
 
             // Stockage
             $em->persist($product);
@@ -70,11 +70,11 @@ class ProductsController extends AbstractController
             return $this->redirectToRoute('admin_products_index');
         }
 
-        // return $this->render('admin/products/add.html.twig', [
-        //     'productForm' => $productForm->createView()
-        // ]);
+        return $this->render('admin/products/add.html.twig', [
+            'productForm' => $productForm->createView()
+        ]);
 
-        return $this->renderForm('admin/products/add.html.twig', compact('productForm'));
+        // return $this->renderForm('admin/products/add.html.twig', compact('productForm'));
         // ['productForm'=> $productForm]
     }
     #[Route('/edition/{id}', name: 'edit')]
@@ -84,8 +84,8 @@ class ProductsController extends AbstractController
         $this->denyAccessUnlessGranted('PRODUCT_EDIT', $product);
         
         // Division par 100 le prix
-        $prix = $product->getPrice()/100;
-            $product->setPrice($prix);
+        // $prix = $product->getPrice()/100;
+        // $product->setPrice($prix);
 
         // Création d'un formulaire
         $productForm = $this->createForm(ProductsFormType::class, $product);
@@ -115,8 +115,8 @@ class ProductsController extends AbstractController
             $product->setSlug($slug);
             
             // Arrondi le prix
-            $prix = $product->getPrice() * 100;
-            $product->setPrice($prix);
+            // $prix = $product->getPrice() * 100;
+            // $product->setPrice($prix);
 
             // Stockage
             $em->persist($product);
